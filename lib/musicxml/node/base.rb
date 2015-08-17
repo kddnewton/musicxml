@@ -2,33 +2,30 @@ module MusicXML
   module Node
     class Base
 
-      attr_accessor :attributes, :nodes
-
       def initialize(node)
-        self.attributes = {}
-        self.nodes = {}
         parse_node(node)
       end
 
       private
 
         def find_class(name)
-          ::MusicXML::Node.const_get(xml_to_class(name))
+          ::MusicXML::Node.const_get(symbol_to_class(name))
         end
 
         def parse_attributes(node)
-          self.class.stored_attributes.each do |attribute|
-            attribute_nodes = node.search(attribute)
-            attributes[xml_to_key(attribute)] = attribute_nodes.map(&:content) if attribute_nodes
+          self.class.stored_attributes.each do |name|
+            attribute_nodes = node.search(symbol_to_node(name))
+            instance_variable_set(:"@#{name}", attribute_nodes.map(&:content)) unless attribute_nodes.nil?
           end
         end
 
         def parse_nodes(node)
-          self.class.stored_nodes.each do |node_name|
-            klass = find_class(node_name)
-            nodes[xml_to_key(node_name)] = node.search(node_name).map do |child_node|
+          self.class.stored_nodes.each do |name|
+            klass = find_class(symbol_to_class(name))
+            node_list = node.search(symbol_to_node(name)).map do |child_node|
               klass.new(child_node)
             end
+            instance_variable_set(:"@#{name}", node_list) if node_list.any?
           end
         end
 
@@ -37,12 +34,12 @@ module MusicXML
           parse_nodes(node)
         end
 
-        def xml_to_class(string)
-          string.capitalize.gsub(/\-([a-z])/) { $1.to_s.upcase }
+        def symbol_to_class(name)
+          name.to_s.capitalize.gsub(/\_([a-z])/) { $1.to_s.upcase }.to_sym
         end
 
-        def xml_to_key(string)
-          string.gsub('-', '_').to_sym
+        def symbol_to_node(name)
+          name.to_s.gsub('_', '-')
         end
 
       class << self
@@ -50,10 +47,12 @@ module MusicXML
 
         def attrs(*names)
           self.stored_attributes += names
+          attr_accessor *names
         end
 
         def nodes(*names)
           self.stored_nodes += names
+          attr_accessor *names
         end
 
         def inherited(subclass)

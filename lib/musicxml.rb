@@ -7,8 +7,8 @@ require 'lilypond/version'
 require 'vexflow/converter'
 
 require 'musicxml/node/base'
-require 'musicxml/node/score_partwise'
-
-require 'musicxml/key_signature'
 require 'musicxml/node'
+require 'musicxml/node/score_partwise'
+require 'musicxml/key_signature'
+
 require 'musicxml/parser'

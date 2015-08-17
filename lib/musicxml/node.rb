@@ -9,69 +9,60 @@ module MusicXML
     end
 
     register :attributes do
-      attrs 'divisions', 'staves'
-      nodes 'clef', 'key'
+      attrs :divisions, :staves
+      nodes :clef, :key
     end
 
     register :clef do
-      attrs 'line', 'sign'
+      attrs :line, :sign
     end
 
     register :defaults do
-      attrs 'music-font', 'word-font'
+      attrs :music_font, :word_font
     end
 
     register :encoding do
-      attrs 'encoding-data', 'software', 'supports'
+      attrs :encoding_data, :software, :supports
     end
 
     register :identification do
-      attrs 'creator', 'rights'
-      nodes 'encoding'
-    end
-
-    register :key do
-      def humanize
-        @key_signature ||= KeySignature.new(attributes[:fifths])
-        @key_signature.humanize
-      end
-
-      attrs 'fifths', 'mode'
+      attrs :creator, :rights
+      nodes :encoding
     end
 
     register :measure do
-      attrs 'sound'
-      nodes 'note'
+      attrs :sound
+      nodes :note
     end
 
     register :note do
-      attrs 'duration', 'staff', 'stem', 'type', 'voice'
-      nodes 'notations', 'pitch'
+      attrs :duration, :staff, :stem, :type, :voice
+      nodes :notations, :pitch
     end
 
     register :notations do
-      attrs 'arpeggiate'
+      attrs :arpeggiate
     end
 
     register :part do
-      nodes 'measure'
+      nodes :measure
     end
 
     register :part_list do
-      nodes 'score-part'
+      nodes :score_part
     end
 
     register :pitch do
-      attrs 'step', 'alter', 'octave'
+      attrs :step, :alter, :octave
     end
 
     register :score_instrument do
-      attrs 'instrument-name'
+      attrs :instrument_name
     end
 
     register :score_part do
-      attrs 'part-name'
-      nodes 'score-instrument'
+      attrs :part_name
+      nodes :score_instrument
     end
   end
 end

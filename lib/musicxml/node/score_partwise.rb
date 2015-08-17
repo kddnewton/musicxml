@@ -1,9 +1,9 @@
 module MusicXML
   module Node
-    class ScorePartwise < Base
 
-      attrs 'movement-title'
-      nodes 'defaults', 'identification', 'part', 'part-list'
+    register :score_partwise do
+      attrs :movement_title
+      nodes :defaults, :identification, :part, :part_list
 
       def to_lilypond
         ::Lilypond::Converter.new(self)
