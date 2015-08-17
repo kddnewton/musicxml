@@ -5,7 +5,7 @@ module MusicXML
       attrs :fifths, :mode
 
       def humanize
-        @key_signature ||= KeySignature.new(attributes[:fifths])
+        @key_signature ||= KeySignature.new(fifths.first.to_i)
         @key_signature.humanize
       end
     end

@@ -9,7 +9,7 @@ module MusicXML
       private
 
         def find_class(name)
-          ::MusicXML::Node.const_get(symbol_to_class(name))
+          ::MusicXML::Node.const_get(name)
         end
 
         def parse_attributes(node)
