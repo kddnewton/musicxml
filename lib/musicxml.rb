@@ -10,5 +10,5 @@ require 'musicxml/node/base'
 require 'musicxml/node/score_partwise'
 
 require 'musicxml/key_signature'
-require 'musicxml/node_registry'
+require 'musicxml/node'
 require 'musicxml/parser'

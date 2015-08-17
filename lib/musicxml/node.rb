@@ -1,10 +1,10 @@
 module MusicXML
-  module NodeRegistry
+  module Node
 
     def self.register(name, &block)
       class_name = name.to_s.capitalize.gsub(/\_([a-z])/) { $1.to_s.upcase }
-      klass = Class.new(Node::Base)
-      Node.const_set(class_name.to_sym, klass)
+      klass = Class.new(Base)
+      const_set(class_name.to_sym, klass)
       klass.class_eval(&block) if block_given?
     end
 
