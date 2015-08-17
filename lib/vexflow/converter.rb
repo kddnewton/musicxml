@@ -6,5 +6,8 @@ module Vexflow
     def initialize(score)
       self.score = score
     end
+
+    def convert
+    end
   end
 end
