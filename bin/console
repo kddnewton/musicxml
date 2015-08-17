@@ -6,7 +6,9 @@ Bundler.require
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'musicxml'
 
-$score = MusicXML::Parser.new(ARGV.shift).parse
+if filepath = ARGV.shift
+  $score = MusicXML::Parser.new(filepath).parse
+end
 
 require 'irb'
 IRB.start
