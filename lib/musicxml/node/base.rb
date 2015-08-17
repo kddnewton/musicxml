@@ -37,6 +37,14 @@ module MusicXML
           parse_nodes(node)
         end
 
+        def xml_to_class(string)
+          string.capitalize.gsub(/\-([a-z])/) { $1.to_s.upcase }
+        end
+
+        def xml_to_key(string)
+          string.gsub('-', '_').to_sym
+        end
+
       class << self
         attr_accessor :stored_attributes, :stored_nodes
 
