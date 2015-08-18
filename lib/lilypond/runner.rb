@@ -4,27 +4,15 @@ module Lilypond
     attr_accessor :source
 
     def initialize(score)
-      self.source = build_from(score)
+      self.score = score
     end
 
     def run
       IO.popen('bin/lilypond', 'w+') do |file|
-        file.write(source)
+        file.write(score.to_lilypond)
         file.close_write
         file.readlines
       end
     end
-
-    private
-
-      def build_from(score)
-        <<-LILYPOND
-\\version "#{VERSION}"
-
-\\score {
-  #{score.to_lilypond}
-}
-LILYPOND
-      end
   end
 end

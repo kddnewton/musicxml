@@ -35,11 +35,6 @@ module MusicXML
       nodes :note
     end
 
-    register :note do
-      attrs :duration, :staff, :stem, :type, :voice
-      nodes :notations, :pitch
-    end
-
     register :notations do
       attrs :arpeggiate
     end
