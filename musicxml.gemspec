@@ -7,9 +7,9 @@ Gem::Specification.new do |s|
   s.version     = MusicXML::VERSION
   s.authors     = ['Kevin Deisz']
   s.email       = ['kevin.deisz@gmail.com']
-  s.homepage    = 'TODO'
-  s.summary     = 'TODO: Summary of Musicxml.'
-  s.description = 'TODO: Description of Musicxml.'
+  s.homepage    = 'https://github.com/kddeisz/musicxml'
+  s.summary     = 'Ruby bindings for musicxml'
+  s.description = 'Read and parse musicxml in ruby'
   s.license     = 'MIT'
 
   s.files = Dir['lib/**/*', 'MIT-LICENSE', 'Rakefile', 'README.rdoc']
@@ -20,3 +20,4 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'minitest'
   s.add_development_dependency 'simplecov'
 end
+
