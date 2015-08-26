@@ -14,10 +14,10 @@ Gem::Specification.new do |s|
 
   s.files = Dir['lib/**/*', 'MIT-LICENSE', 'Rakefile', 'README.rdoc']
   s.test_files = Dir['test/**/*']
+  s.executables << 'lilypond'
 
   s.add_dependency 'nokogiri'
 
   s.add_development_dependency 'minitest'
   s.add_development_dependency 'simplecov'
 end
-

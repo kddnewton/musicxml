@@ -1,4 +1,5 @@
 require 'nokogiri'
+require 'json'
 
 require 'lilypond/converter'
 require 'lilypond/runner'
