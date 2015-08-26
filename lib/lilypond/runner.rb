@@ -1,7 +1,7 @@
 module Lilypond
   class Runner
 
-    attr_accessor :source
+    attr_accessor :score
 
     def initialize(score)
       self.score = score
