@@ -7,12 +7,13 @@ module Lilypond
       self.score = score
     end
 
-    def convert
+    def convert(args = {})
       source = []
       source << "\\version \"#{VERSION}\""
 
       score.part.each do |part|
-        source << '{'
+        source << '\\new Staff {'
+        source << MusicXML::KeySignature.new(args[:key]).to_lilypond if args[:key]
         notes = []
         part.measure.each do |measure|
           measure.note.each do |note|
