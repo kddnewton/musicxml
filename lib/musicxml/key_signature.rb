@@ -13,14 +13,16 @@ module MusicXML
       FIFTHS[number + 6]
     end
 
-    def lilypond_name
-      # WTF lilypond.  W. T. F.
-      self.humanize.gsub('b', 'es').gsub('#', 'is').downcase
+    def to_lilypond
+      # TODO: add support for minor keys
+      "\\key #{lilypond_name} \\major"
     end
 
-    def to_lilypond
-      #TODO: add support for minor keys
-      "\\key #{self.lilypond_name} \\major" 
-    end
+    private
+
+      # lilypond represents flats as "es" and sharps as "is"
+      def lilypond_name
+        self.humanize.gsub('b', 'es').gsub('#', 'is').downcase
+      end
   end
 end
