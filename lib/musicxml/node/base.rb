@@ -23,7 +23,12 @@ module MusicXML
           self.class.stored_nodes.each do |name|
             klass = find_class(symbol_to_class(name))
             node_list = node.search(symbol_to_node(name)).map do |child_node|
-              klass.new(child_node)
+              begin
+                klass.new(child_node)
+              rescue => exception
+                puts "Could not create node of type #{klass}: #{exception.message}"
+                puts child_node
+              end
             end
             instance_variable_set(:"@#{name}", node_list) if node_list.any?
           end

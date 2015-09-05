@@ -8,6 +8,10 @@ module MusicXML
       klass.class_eval(&block) if block_given?
     end
 
+    register :articulations do
+      attrs :accent, :breath_mark, :staccato, :tenuto
+    end
+
     register :attributes do
       attrs :divisions, :staves
       nodes :clef, :key
@@ -15,6 +19,14 @@ module MusicXML
 
     register :clef do
       attrs :line, :sign
+    end
+
+    register :direction do
+      nodes :direction_type
+    end
+
+    register :direction_type do
+      attrs :words, :dynamics
     end
 
     register :defaults do
@@ -32,11 +44,12 @@ module MusicXML
 
     register :measure do
       attrs :sound
-      nodes :note
+      nodes :clef, :direction, :key, :note, :time
     end
 
     register :notations do
-      attrs :arpeggiate
+      nodes :articulations
+      attrs :arpeggiate, :slur
     end
 
     register :part do
@@ -59,5 +72,6 @@ module MusicXML
       attrs :part_name
       nodes :score_instrument
     end
+
   end
 end
