@@ -1,0 +1,24 @@
+<select id="filepaths">
+	<option></option>
+	<% @filepaths.each do |filepath| %>
+		<option><%= filepath %></option>
+	<% end %>
+</select>
+
+<br /><br />
+
+<canvas id="canvas" width="700" height="100"></canvas>
+
+<script>
+document.getElementById("filepaths").addEventListener("change", function(event) {
+	var request = new XMLHttpRequest();
+	request.onreadystatechange = function() {
+		if(this.readyState == this.DONE) {
+			new Engraver("canvas", JSON.parse(this.responseText));
+		}
+	};
+
+	request.open("GET", "/parse?filepath=" + this.value, true);
+	request.send();
+});
+</script>

@@ -14,18 +14,6 @@ class KeyTest < Minitest::Test
     mock.verify
   end
 
-  def test_to_vexflow
-    return_value = Object.new
-    mock = Minitest::Mock.new
-    mock.expect(:convert, return_value)
-
-    node = MusicXML::Node::ScorePartwise.new(fake_node)
-    Vexflow::Converter.stub :new, mock do
-      assert_equal return_value, node.to_vexflow
-    end
-    mock.verify
-  end
-
   private
 
     def fake_node

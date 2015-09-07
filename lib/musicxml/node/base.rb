@@ -4,6 +4,8 @@ module MusicXML
     # Superclass for all node types
     class Base
 
+      include JsonExport
+
       # Build a Parser to parse the node based on this class' config
       def initialize(node)
         Parser.new(node: node, config: self.class.config).parse.each do |key, value|

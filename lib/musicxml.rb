@@ -3,6 +3,7 @@ require 'json'
 require 'nokogiri'
 
 require 'musicxml/node/config'
+require 'musicxml/node/json_export'
 require 'musicxml/node/base'
 require 'musicxml/node/parser'
 
@@ -17,6 +18,3 @@ require 'musicxml/parser'
 require 'lilypond/converter'
 require 'lilypond/runner'
 require 'lilypond/version'
-
-require 'vexflow/converter'
-require 'vexflow/node_extras'

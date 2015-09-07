@@ -10,10 +10,6 @@ module MusicXML
       def to_lilypond
         ::Lilypond::Converter.new(self).convert
       end
-
-      def to_vexflow
-        ::Vexflow::Converter.new(self).convert
-      end
     end
   end
 end
