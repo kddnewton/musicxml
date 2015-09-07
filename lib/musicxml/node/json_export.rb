@@ -5,6 +5,10 @@ module MusicXML
         { json_key => json_values }.to_json
       end
 
+      def json_key
+        self.class.name.split('::').last.gsub(/^([A-Z])/) { $1.downcase }
+      end
+
       def json_values
         output = {}
 
@@ -17,7 +21,7 @@ module MusicXML
 
         self.class.config.singular_nodes.each do |name|
           node = send(name)
-          output.merge(node.json_values) if node
+          output[jsify(name)] = node ? node.json_values : nil
         end
         self.class.config.plural_nodes.each do |name|
           nodes = send(name)
@@ -31,10 +35,6 @@ module MusicXML
 
         def jsify(name)
           name.to_s.gsub(/(_[a-z])/) { $1.upcase[1..-1] }
-        end
-
-        def json_key
-          self.class.name.split('::').last.gsub(/^([A-Z])/) { $1.downcase }
         end
     end
   end

@@ -18,3 +18,20 @@ require 'musicxml/parser'
 require 'lilypond/converter'
 require 'lilypond/runner'
 require 'lilypond/version'
+
+module MusicXML
+  def self.compile_js
+    %w[sprockets uglifier pathname].each do |library|
+      require library
+    end
+
+    root = Pathname('lib/assets')
+    env = Sprockets::Environment.new(root)
+
+    env.append_path('src')
+    env.js_compressor = Uglifier.new(mangle: true)
+
+    asset = env.find_asset('main.js')
+    asset.write_to(root.join('musicxml-min.js'))
+  end
+end

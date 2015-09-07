@@ -1,15 +1,7 @@
 #!/usr/bin/env ruby
 
+$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'bundler/setup'
-require 'sprockets'
-require 'uglifier'
-require 'pathname'
+require 'musicxml'
 
-root = Pathname('lib/assets')
-env = Sprockets::Environment.new(root)
-
-env.append_path('src')
-env.js_compressor = Uglifier.new(mangle: true)
-
-asset = env.find_asset('main.js')
-asset.write_to(root.join('musicxml-min.js'))
+MusicXML.compile_js

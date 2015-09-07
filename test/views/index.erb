@@ -7,14 +7,19 @@
 
 <br /><br />
 
-<canvas id="canvas" width="700" height="100"></canvas>
+<canvas id="canvas" width="820" height="800"></canvas>
 
 <script>
 document.getElementById("filepaths").addEventListener("change", function(event) {
 	var request = new XMLHttpRequest();
+
 	request.onreadystatechange = function() {
 		if(this.readyState == this.DONE) {
-			MusicXML.engrave("canvas", JSON.parse(this.responseText));
+			var canvas = document.getElementById("canvas");
+			canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
+
+			var responseJson = JSON.parse(this.responseText);
+			window.score = MusicXML.engrave("canvas", responseJson);
 		}
 	};
 

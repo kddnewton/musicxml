@@ -2,6 +2,7 @@ require 'sinatra'
 require 'pathname'
 
 set :public_folder, File.dirname(__FILE__) + '/../lib/assets'
+get('/favicon.ico') {}
 
 get '/' do
   @filepaths = Dir['samples/*.xml'].map { |filepath| Pathname(filepath).basename }
