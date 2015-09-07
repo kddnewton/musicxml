@@ -12,7 +12,7 @@ module MusicXML
       def json_values
         output = {}
 
-        self.class.config.singular_attrs.each do |name|
+        (self.class.config.properties + self.class.config.singular_attrs).each do |name|
           output[jsify(name)] = send(name)
         end
         self.class.config.plural_attrs.each do |name|
@@ -26,10 +26,6 @@ module MusicXML
         self.class.config.plural_nodes.each do |name|
           nodes = send(name)
           output[jsify(name)] = nodes ? nodes.map(&:json_values) : []
-        end
-
-        self.class.config.properties.each do |name|
-          output[jsify(name)] = send(name)
         end
 
         output
