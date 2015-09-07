@@ -14,7 +14,7 @@ document.getElementById("filepaths").addEventListener("change", function(event) 
 	var request = new XMLHttpRequest();
 	request.onreadystatechange = function() {
 		if(this.readyState == this.DONE) {
-			new Engraver("canvas", JSON.parse(this.responseText));
+			MusicXML.engrave("canvas", JSON.parse(this.responseText));
 		}
 	};
 
