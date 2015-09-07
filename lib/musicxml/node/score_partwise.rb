@@ -2,8 +2,10 @@ module MusicXML
   module Node
 
     register :score_partwise do
-      attrs :movement_title
-      nodes :defaults, :identification, :part, :part_list
+      sattrs :movement_title
+
+      pnodes :defaults, :part_list, :part
+      snodes :identification
 
       def to_lilypond
         ::Lilypond::Converter.new(self).convert

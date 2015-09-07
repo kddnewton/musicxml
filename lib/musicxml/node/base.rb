@@ -1,63 +1,26 @@
 module MusicXML
   module Node
+
+    # Superclass for all node types
     class Base
 
+      # Build a Parser to parse the node based on this class' config
       def initialize(node)
-        parse_node(node)
+        Parser.new(node: node, config: self.class.config).parse.each do |key, value|
+          instance_variable_set(key, value)
+        end
       end
 
-      private
-
-        def find_class(name)
-          ::MusicXML::Node.const_get(name)
-        end
-
-        def parse_attributes(node)
-          self.class.stored_attributes.each do |name|
-            attribute_nodes = node.search(symbol_to_node(name))
-            instance_variable_set(:"@#{name}", attribute_nodes.map(&:content)) unless attribute_nodes.nil?
-          end
-        end
-
-        def parse_nodes(node)
-          self.class.stored_nodes.each do |name|
-            klass = find_class(symbol_to_class(name))
-            node_list = node.search(symbol_to_node(name)).map do |child_node|
-              klass.new(child_node)
-            end
-            instance_variable_set(:"@#{name}", node_list) if node_list.any?
-          end
-        end
-
-        def parse_node(node)
-          parse_attributes(node)
-          parse_nodes(node)
-        end
-
-        def symbol_to_class(name)
-          name.to_s.capitalize.gsub(/\_([a-z])/) { $1.to_s.upcase }.to_sym
-        end
-
-        def symbol_to_node(name)
-          name.to_s.gsub('_', '-')
-        end
-
       class << self
-        attr_accessor :stored_attributes, :stored_nodes
+        # forward class methods to the config to store the configuration
+        extend Forwardable
+        def_delegators :config, :pattrs, :pnodes, :sattrs, :snodes
 
-        def attrs(*names)
-          self.stored_attributes += names
-          attr_accessor *names
-        end
+        attr_accessor :config
 
-        def nodes(*names)
-          self.stored_nodes += names
-          attr_accessor *names
-        end
-
+        # when this class is subclassed build a new config
         def inherited(subclass)
-          subclass.stored_attributes = []
-          subclass.stored_nodes = []
+          subclass.config = ::MusicXML::Node::Config.new(subclass)
         end
       end
     end

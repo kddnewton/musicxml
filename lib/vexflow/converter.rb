@@ -8,17 +8,7 @@ module Vexflow
     end
 
     def convert
-      output = {}
-      score.part.each_with_index do |part, index|
-        notes = []
-        part.measure.each do |measure|
-          measure.note.each do |note|
-            notes << note.to_vexflow
-          end
-        end
-        output["part_#{index}"] = notes
-      end
-      output.to_json
+      score.vexflow_hash.to_json
     end
   end
 end

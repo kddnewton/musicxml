@@ -14,15 +14,14 @@ class NodeTest < Minitest::Test
   end
 
   def test_registration
-    constants = [:Base, :Attributes, :Clef, :Defaults, :Encoding, :Identification, :Measure, :Note, :Notations,
+    constants = [:Attributes, :Clef, :Defaults, :Encoding, :Identification, :Measure, :Note, :Notations,
       :Part, :PartList, :Pitch, :ScoreInstrument, :ScorePart, :Key, :ScorePartwise]
 
     constants.each do |constant|
       assert MusicXML::Node.const_defined?(constant)
 
-      klass = MusicXML::Node.const_get(constant)
-      assert klass.respond_to?(:stored_attributes)
-      assert klass.respond_to?(:stored_nodes)
+      clazz = MusicXML::Node.const_get(constant)
+      assert clazz.respond_to?(:config)
     end
   end
 end

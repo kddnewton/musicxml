@@ -3,61 +3,60 @@ module MusicXML
 
     def self.register(name, &block)
       class_name = name.to_s.capitalize.gsub(/\_([a-z])/) { $1.to_s.upcase }
-      klass = Class.new(Base)
-      const_set(class_name.to_sym, klass)
-      klass.class_eval(&block) if block_given?
+      const_set(class_name.to_sym, Class.new(Base, &block))
     end
 
     register :attributes do
-      attrs :divisions, :staves
-      nodes :clef, :key
+      pattrs :divisions, :staves
+      snodes :clef, :key
     end
 
     register :clef do
-      attrs :line, :sign
+      sattrs :line, :sign
     end
 
     register :defaults do
-      attrs :music_font, :word_font
+      sattrs :music_font, :word_font
     end
 
     register :encoding do
-      attrs :encoding_data, :software, :supports
+      pattrs :supports
+      sattrs :encoding_data, :software
     end
 
     register :identification do
-      attrs :creator, :rights
-      nodes :encoding
+      sattrs :creator, :rights
+      snodes :encoding
     end
 
     register :measure do
-      attrs :sound
-      nodes :note
+      sattrs :sound
+      pnodes :note
     end
 
     register :notations do
-      attrs :arpeggiate
+      sattrs :arpeggiate
     end
 
     register :part do
-      nodes :measure
+      pnodes :measure
     end
 
     register :part_list do
-      nodes :score_part
+      snodes :score_part
     end
 
     register :pitch do
-      attrs :step, :alter, :octave
+      sattrs :step, :alter, :octave
     end
 
     register :score_instrument do
-      attrs :instrument_name
+      sattrs :instrument_name
     end
 
     register :score_part do
-      attrs :part_name
-      nodes :score_instrument
+      sattrs :part_name
+      snodes :score_instrument
     end
   end
 end
