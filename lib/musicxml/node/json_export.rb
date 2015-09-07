@@ -28,6 +28,10 @@ module MusicXML
           output[jsify(name)] = nodes ? nodes.map(&:json_values) : []
         end
 
+        self.class.config.properties.each do |name|
+          output[jsify(name)] = send(name)
+        end
+
         output
       end
 

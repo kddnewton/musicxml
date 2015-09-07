@@ -7,6 +7,8 @@ module MusicXML
       pnodes :notations
       snodes :pitch
 
+      props :dot
+
       # convert a note to lilypond notation
       def to_lilypond
         "#{pitch.step.downcase}#{lilypond_octave}#{lilypond_duration}"

@@ -14,7 +14,7 @@ module MusicXML
 
       # Loop through each of the configured parsing options and store them
       def parse
-        %w[plural_attrs plural_nodes singular_attrs singular_nodes].each do |method_name|
+        %w[plural_attrs plural_nodes singular_attrs singular_nodes properties].each do |method_name|
           config.send(method_name).each(&method(method_name))
         end
         parsed
@@ -37,6 +37,11 @@ module MusicXML
             clazz.new(child_node)
           end
           set(name, node_list) if node_list.any?
+        end
+
+        def properties(name)
+          prop_node = node.at(symbol_to_node(name))
+          set(name, !prop_node.nil?)
         end
 
         def set(key, value)

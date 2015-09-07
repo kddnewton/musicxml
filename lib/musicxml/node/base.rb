@@ -16,7 +16,7 @@ module MusicXML
       class << self
         # forward class methods to the config to store the configuration
         extend Forwardable
-        def_delegators :config, :pattrs, :pnodes, :sattrs, :snodes
+        def_delegators :config, :pattrs, :pnodes, :props, :sattrs, :snodes
 
         attr_accessor :config
 

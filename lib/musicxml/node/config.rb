@@ -2,11 +2,11 @@ module MusicXML
   module Node
     class Config
 
-      attr_accessor :clazz, :plural_attrs, :plural_nodes, :singular_attrs, :singular_nodes
+      attr_accessor :clazz, :plural_attrs, :plural_nodes, :properties, :singular_attrs, :singular_nodes
 
       def initialize(clazz)
         self.clazz = clazz
-        %w[plural_attrs plural_nodes singular_attrs singular_nodes].each do |name|
+        %w[plural_attrs plural_nodes singular_attrs singular_nodes properties].each do |name|
           send("#{name}=", [])
         end
       end
@@ -18,6 +18,11 @@ module MusicXML
 
       def pnodes(*names)
         self.plural_nodes += names
+        add_accessors(*names)
+      end
+
+      def props(*names)
+        self.properties += names
         add_accessors(*names)
       end
 
