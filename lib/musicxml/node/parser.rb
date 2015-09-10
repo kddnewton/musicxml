@@ -23,7 +23,7 @@ module MusicXML
       private
 
         def find_class(name)
-          ::MusicXML::Node.const_get(name)
+          ::MusicXML::Node.registry[name]
         end
 
         def plural_attrs(name)
@@ -32,7 +32,7 @@ module MusicXML
         end
 
         def plural_nodes(name)
-          clazz = find_class(symbol_to_class(name))
+          clazz = find_class(name)
           node_list = node.search(symbol_to_node(name)).map do |child_node|
             clazz.new(child_node)
           end
@@ -55,13 +55,8 @@ module MusicXML
 
         def singular_nodes(name)
           if found_node = node.at(symbol_to_node(name))
-            clazz = find_class(symbol_to_class(name))
-            set(name, clazz.new(found_node))
+            set(name, find_class(name).new(found_node))
           end
-        end
-
-        def symbol_to_class(name)
-          name.to_s.capitalize.gsub(/\_([a-z])/) { $1.to_s.upcase }.to_sym
         end
 
         def symbol_to_node(name)
