@@ -1,9 +1,17 @@
 module MusicXML
   module Node
 
+    class << self
+      attr_accessor :registry
+    end
+    self.registry = {}
+
     def self.register(name, &block)
       class_name = name.to_s.capitalize.gsub(/\_([a-z])/) { $1.to_s.upcase }
-      const_set(class_name.to_sym, Class.new(Base, &block))
+      clazz = Class.new(Base, &block)
+
+      registry[name] = clazz
+      const_set(class_name.to_sym, clazz)
     end
 
     register :articulations do
