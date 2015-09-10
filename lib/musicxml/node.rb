@@ -6,13 +6,21 @@ module MusicXML
       const_set(class_name.to_sym, Class.new(Base, &block))
     end
 
+    register :articulations do
+      sattrs :accent, :breath_mark, :staccato, :tenuto
+    end
+
     register :attributes do
       pattrs :divisions, :staves
       snodes :clef, :key
     end
 
-    register :clef do
-      sattrs :line, :sign
+    register :direction do
+      snodes :direction_type
+    end
+
+    register :direction_type do
+      pattrs :words, :dynamics
     end
 
     register :defaults do
@@ -31,11 +39,13 @@ module MusicXML
 
     register :measure do
       sattrs :sound
+      snodes :clef, :direction, :key, :time
       pnodes :note
     end
 
     register :notations do
-      sattrs :arpeggiate
+      pnodes :articulations
+      sattrs :arpeggiate, :slur
     end
 
     register :part do
@@ -58,5 +68,6 @@ module MusicXML
       sattrs :part_name
       snodes :score_instrument
     end
+
   end
 end
