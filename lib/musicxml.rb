@@ -4,6 +4,7 @@ require 'nokogiri'
 
 require 'musicxml/node/config'
 require 'musicxml/node/json_export'
+require 'musicxml/node/lilypond_export'
 require 'musicxml/node/base'
 require 'musicxml/node/parser'
 
@@ -13,13 +14,10 @@ require 'musicxml/node/note'
 require 'musicxml/node/score_partwise'
 require 'musicxml/node/time'
 require 'musicxml/node/clef'
+
+require 'musicxml/lilypond_version'
 require 'musicxml/key_signature'
-
 require 'musicxml/parser'
-
-require 'lilypond/converter'
-require 'lilypond/runner'
-require 'lilypond/version'
 
 module MusicXML
   def self.compile_js

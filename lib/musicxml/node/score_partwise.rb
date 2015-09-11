@@ -7,9 +7,7 @@ module MusicXML
       pnodes :defaults, :part_list, :part
       snodes :identification
 
-      def to_lilypond
-        ::Lilypond::Converter.new(self).convert
-      end
+      include LilypondExport
     end
   end
 end

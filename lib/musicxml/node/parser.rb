@@ -28,7 +28,7 @@ module MusicXML
 
         def plural_attrs(name)
           attr_nodes = node.search(symbol_to_node(name))
-          set(name, attr_nodes.map(&:content)) if attr_nodes.any?
+          set(name, attr_nodes.any? ? attr_nodes.map(&:content) : [])
         end
 
         def plural_nodes(name)
@@ -36,7 +36,7 @@ module MusicXML
           node_list = node.search(symbol_to_node(name)).map do |child_node|
             clazz.new(child_node)
           end
-          set(name, node_list) if node_list.any?
+          set(name, node_list.any? ? node_list : [])
         end
 
         def properties(name)
