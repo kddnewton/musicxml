@@ -2,7 +2,9 @@ module MusicXML
   module Node
     class Config
 
-      attr_accessor :clazz, :plural_attrs, :plural_nodes, :properties, :singular_attrs, :singular_nodes
+      attr_accessor :clazz, :properties
+      attr_accessor :plural_attrs, :singular_attrs
+      attr_accessor :plural_nodes, :singular_nodes
 
       def initialize(clazz)
         self.clazz = clazz

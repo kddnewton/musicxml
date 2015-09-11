@@ -16,9 +16,7 @@ module MusicXML
     private
 
       def validate_filepath
-        unless File.file?(filepath)
-          raise ArgumentError, "Invalid filepath given: #{filepath}"
-        end
+        fail ArgumentError, "Invalid filepath given: #{filepath}" unless File.file?(filepath)
       end
   end
 end

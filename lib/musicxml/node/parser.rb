@@ -54,13 +54,12 @@ module MusicXML
         end
 
         def singular_nodes(name)
-          if found_node = node.at(symbol_to_node(name))
-            set(name, find_class(name).new(found_node))
-          end
+          found_node = node.at(symbol_to_node(name))
+          set(name, find_class(name).new(found_node)) if found_node
         end
 
         def symbol_to_node(name)
-          name.to_s.gsub('_', '-')
+          name.to_s.tr('_', '-')
         end
     end
   end

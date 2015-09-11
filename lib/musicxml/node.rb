@@ -1,4 +1,7 @@
 module MusicXML
+  # Namespace for all nodes defined by the system. Nodes are used
+  # to represent the various segments of the XML describing different
+  # musical concepts.
   module Node
 
     class << self
@@ -43,12 +46,6 @@ module MusicXML
     register :identification do
       sattrs :creator, :rights
       snodes :encoding
-    end
-
-    register :measure do
-      sattrs :sound
-      snodes :clef, :direction, :key, :time
-      pnodes :note
     end
 
     register :notations do

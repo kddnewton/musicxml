@@ -8,7 +8,6 @@ module MusicXML
       def to_lilypond
         "\\clef #{sign}"
       end
-
     end
   end
 end

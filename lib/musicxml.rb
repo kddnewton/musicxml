@@ -8,7 +8,7 @@ require 'musicxml/node/base'
 require 'musicxml/node/parser'
 
 require 'musicxml/node'
-%w[clef key note part score_partwise time].each do |node|
+%w[clef key measure note part score_partwise time].each do |node|
   require "musicxml/node/#{node}"
 end
 
