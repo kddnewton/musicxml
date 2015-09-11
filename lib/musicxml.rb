@@ -4,7 +4,6 @@ require 'nokogiri'
 
 require 'musicxml/node/config'
 require 'musicxml/node/json_export'
-require 'musicxml/node/lilypond_export'
 require 'musicxml/node/base'
 require 'musicxml/node/parser'
 
