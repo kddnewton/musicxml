@@ -8,7 +8,6 @@ module MusicXML
       def to_lilypond
         "\\time #{beats.to_i}/#{beat_type.to_i}"
       end
-
     end
   end
 end

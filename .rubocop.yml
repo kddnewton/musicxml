@@ -1,0 +1,23 @@
+AllCops:
+  Exclude:
+    - 'test/**/*'
+    - 'vendor/**/*'
+
+Metrics/LineLength:
+  Max: 100
+
+Style/EmptyLinesAroundClassBody:
+  Enabled: false
+
+Style/EmptyLinesAroundModuleBody:
+  Enabled: false
+
+Style/IndentationConsistency:
+  Enabled: false
+
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    '%w': '[]'
+
+Style/PerlBackrefs:
+  Enabled: false

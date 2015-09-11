@@ -8,7 +8,7 @@ module MusicXML
       validate_filepath
     end
 
-    def parse(thing = false)
+    def parse
       document = Nokogiri::XML(File.read(filepath))
       self.score = Node::ScorePartwise.new(document.at('score-partwise'))
     end
