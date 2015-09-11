@@ -56,10 +56,6 @@ module MusicXML
       sattrs :arpeggiate, :slur
     end
 
-    register :part do
-      pnodes :measure
-    end
-
     register :part_list do
       snodes :score_part
     end
