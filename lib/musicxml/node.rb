@@ -73,5 +73,13 @@ module MusicXML
     register :chord do
     end
 
+    register :barline do
+      snodes :repeat
+    end
+
+    register :repeat do
+      sattrs :direction, :times
+    end
+
   end
 end
