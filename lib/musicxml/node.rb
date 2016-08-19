@@ -54,7 +54,7 @@ module MusicXML
     end
 
     register :part_list do
-      snodes :score_part
+      pnodes :score_part
     end
 
     register :pitch do

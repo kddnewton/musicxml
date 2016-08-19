@@ -2,3 +2,6 @@
 coverage/
 rdoc/
 
+.ruby-version
+.ruby-gemset
+

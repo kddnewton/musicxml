@@ -4,8 +4,8 @@ module MusicXML
     register :score_partwise do
       sattrs :movement_title
 
-      pnodes :defaults, :part_list, :part
-      snodes :identification
+      pnodes :defaults, :part
+      snodes :identification, :part_list
 
       def to_lilypond
         source = "\\version \"#{::MusicXML::LILYPOND_VERSION}\""
