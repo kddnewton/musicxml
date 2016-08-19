@@ -70,5 +70,8 @@ module MusicXML
       snodes :score_instrument
     end
 
+    register :chord do
+    end
+
   end
 end

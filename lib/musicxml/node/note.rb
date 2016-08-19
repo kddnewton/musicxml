@@ -5,7 +5,7 @@ module MusicXML
       sattrs :duration, :staff, :stem, :type, :voice
 
       pnodes :notations
-      snodes :pitch
+      snodes :pitch, :chord
 
       props :dot
 
