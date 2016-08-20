@@ -4,10 +4,8 @@ module MusicXML
     register :note do
       sattrs :duration, :staff, :stem, :type, :voice
 
-      pnodes :notations
+      pnodes :notations, :dot
       snodes :pitch, :chord
-
-      props :dot
 
       # convert a note to lilypond notation
       def to_lilypond

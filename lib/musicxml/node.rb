@@ -78,7 +78,10 @@ module MusicXML
     end
 
     register :repeat do
-      sattrs :direction, :times
+      props :direction, :times
+    end
+
+    register :dot do
     end
 
   end

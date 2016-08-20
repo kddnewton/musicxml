@@ -40,8 +40,9 @@ module MusicXML
         end
 
         def properties(name)
-          prop_node = node.at(symbol_to_node(name))
-          set(name, !prop_node.nil?)
+          attr = node.attributes[symbol_to_node(name)]
+          
+          set(name, attr.nil? ? "" : attr.value)
         end
 
         def set(key, value)
