@@ -23,7 +23,11 @@ module MusicXML
 
     register :attributes do
       pattrs :divisions, :staves
-      snodes :clef, :key
+      snodes :clef, :key, :transpose
+    end
+
+    register :transpose do
+      sattrs :diatonic, :chromatic, :octave
     end
 
     register :direction do
