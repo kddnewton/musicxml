@@ -2,7 +2,7 @@ module MusicXML
   module Node
 
     register :note do
-      sattrs :duration, :staff, :stem, :type, :voice
+      sattrs :duration, :staff, :stem, :type, :voice, :accidental
 
       pnodes :notations, :dot
       snodes :pitch, :chord
