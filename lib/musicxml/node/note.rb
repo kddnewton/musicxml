@@ -16,27 +16,27 @@ module MusicXML
 
       private
 
-        def lilypond_duration
-          case type
-          when '16th' then 16
-          when 'eighth' then 8
-          when 'quarter' then 4
-          when 'half' then 2
-          when 'whole' then 1
-          else ''
-          end
+      def lilypond_duration
+        case type
+        when '16th' then 16
+        when 'eighth' then 8
+        when 'quarter' then 4
+        when 'half' then 2
+        when 'whole' then 1
+        else ''
         end
+      end
 
-        def lilypond_octave
-          octave = pitch.octave.to_i
-          if octave > 3
-            '\'' * (octave - 3)
-          elsif octave < 3
-            ',' * (3 - octave)
-          else
-            ''
-          end
+      def lilypond_octave
+        octave = pitch.octave.to_i
+        if octave > 3
+          '\'' * (octave - 3)
+        elsif octave < 3
+          ',' * (3 - octave)
+        else
+          ''
         end
+      end
     end
   end
 end

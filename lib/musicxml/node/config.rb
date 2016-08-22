@@ -40,11 +40,9 @@ module MusicXML
 
       private
 
-        def add_accessors(*names)
-          clazz.class_eval do
-            attr_accessor *names
-          end
-        end
+      def add_accessors(*names)
+        clazz.class_eval { attr_accessor(*names) }
+      end
     end
   end
 end

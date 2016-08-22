@@ -16,13 +16,13 @@ class KeyTest < Minitest::Test
 
   private
 
-    def fake_node
-      xml = <<-XML
+  def fake_node
+    xml = <<-XML
 <key>
   <fifths>0</fifths>
   <mode>major</mode>
 </key>
 XML
-      Nokogiri::XML(xml)
-    end
+    Nokogiri::XML(xml)
+  end
 end

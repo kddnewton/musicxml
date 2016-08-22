@@ -22,45 +22,45 @@ module MusicXML
 
       private
 
-        def find_class(name)
-          ::MusicXML::Node.registry[name]
-        end
+      def find_class(name)
+        ::MusicXML::Node.registry[name]
+      end
 
-        def plural_attrs(name)
-          attr_nodes = node.search(symbol_to_node(name))
-          set(name, attr_nodes.any? ? attr_nodes.map(&:content) : [])
-        end
+      def plural_attrs(name)
+        attr_nodes = node.search(symbol_to_node(name))
+        set(name, attr_nodes.any? ? attr_nodes.map(&:content) : [])
+      end
 
-        def plural_nodes(name)
-          clazz = find_class(name)
-          node_list = node.search(symbol_to_node(name)).map do |child_node|
-            clazz.new(child_node)
-          end
-          set(name, node_list.any? ? node_list : [])
+      def plural_nodes(name)
+        clazz = find_class(name)
+        node_list = node.search(symbol_to_node(name)).map do |child_node|
+          clazz.new(child_node)
         end
+        set(name, node_list.any? ? node_list : [])
+      end
 
-        def properties(name)
-          prop_node = node.at(symbol_to_node(name))
-          set(name, !prop_node.nil?)
-        end
+      def properties(name)
+        prop_node = node.at(symbol_to_node(name))
+        set(name, !prop_node.nil?)
+      end
 
-        def set(key, value)
-          parsed[:"@#{key}"] = value
-        end
+      def set(key, value)
+        parsed[:"@#{key}"] = value
+      end
 
-        def singular_attrs(name)
-          attr_node = node.at(symbol_to_node(name))
-          set(name, attr_node.content) unless attr_node.nil?
-        end
+      def singular_attrs(name)
+        attr_node = node.at(symbol_to_node(name))
+        set(name, attr_node.content) unless attr_node.nil?
+      end
 
-        def singular_nodes(name)
-          found_node = node.at(symbol_to_node(name))
-          set(name, find_class(name).new(found_node)) if found_node
-        end
+      def singular_nodes(name)
+        found_node = node.at(symbol_to_node(name))
+        set(name, find_class(name).new(found_node)) if found_node
+      end
 
-        def symbol_to_node(name)
-          name.to_s.tr('_', '-')
-        end
+      def symbol_to_node(name)
+        name.to_s.tr('_', '-')
+      end
     end
   end
 end

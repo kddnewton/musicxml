@@ -1,10 +1,15 @@
 AllCops:
+  DisplayCopNames: true
+  DisplayStyleGuide: true
   Exclude:
-    - 'test/**/*'
-    - 'vendor/**/*'
+    - test/**/*
+    - vendor/**/*
 
 Metrics/LineLength:
   Max: 100
+
+Style/Documentation:
+  Enabled: false
 
 Style/EmptyLinesAroundClassBody:
   Enabled: false
@@ -12,11 +17,9 @@ Style/EmptyLinesAroundClassBody:
 Style/EmptyLinesAroundModuleBody:
   Enabled: false
 
-Style/IndentationConsistency:
-  Enabled: false
-
 Style/PercentLiteralDelimiters:
   PreferredDelimiters:
+    '%i': '[]'
     '%w': '[]'
 
 Style/PerlBackrefs:

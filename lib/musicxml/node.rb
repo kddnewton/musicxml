@@ -69,6 +69,5 @@ module MusicXML
       sattrs :part_name
       snodes :score_instrument
     end
-
   end
 end
