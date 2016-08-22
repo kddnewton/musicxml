@@ -31,16 +31,16 @@ class NodeTest < Minitest::Test
 
   private
 
-    def register_test_node
-      MusicXML::Node.register :test_node do
-        def self.echo(string)
-          string
-        end
+  def register_test_node
+    MusicXML::Node.register :test_node do
+      def self.echo(string)
+        string
       end
-
-      yield
-
-      MusicXML::Node.registry.delete(:test_node)
-      MusicXML::Node.send(:remove_const, :TestNode)
     end
+
+    yield
+
+    MusicXML::Node.registry.delete(:test_node)
+    MusicXML::Node.send(:remove_const, :TestNode)
+  end
 end

@@ -1,3 +1,0 @@
-= MusicXML
-
-Ruby bindings for MusicXML.

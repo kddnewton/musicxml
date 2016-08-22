@@ -83,6 +83,5 @@ module MusicXML
 
     register :dot do
     end
-
   end
 end

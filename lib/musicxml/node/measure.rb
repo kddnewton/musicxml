@@ -7,11 +7,17 @@ module MusicXML
       pnodes :note
 
       def to_lilypond
-        source = []
-        source << MusicXML::KeySignature.new(measure.key.fifths.to_i).to_lilypond if key
-        source << clef.to_lilypond if clef
-        source << time.to_lilypond if time
-        source.join("\n") + "\n"
+        optional_nodes.join("\n") + "\n"
+      end
+
+      private
+
+      def optional_nodes
+        [
+          (MusicXML::KeySignature.new(measure.key.fifths.to_i).to_lilypond if key),
+          (clef.to_lilypond if clef),
+          (time.to_lilypond if time)
+        ]
       end
     end
   end
