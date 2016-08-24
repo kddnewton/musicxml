@@ -22,8 +22,8 @@ class ParserTest < Minitest::Test
 
   private
 
-    def fake_file
-      fake_doc = <<-XML
+  def fake_file
+    fake_doc = <<-XML
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 3.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
 <score-partwise version="3.0">
@@ -31,15 +31,15 @@ class ParserTest < Minitest::Test
 </score-partwise>
 XML
 
-      file = Tempfile.new(['fake-', '.xml'])
-      file.write(fake_doc)
-      file.rewind
+    file = Tempfile.new(['fake-', '.xml'])
+    file.write(fake_doc)
+    file.rewind
 
-      begin
-        yield file
-      ensure
-        file.close
-        file.unlink
-      end
+    begin
+      yield file
+    ensure
+      file.close
+      file.unlink
     end
+  end
 end

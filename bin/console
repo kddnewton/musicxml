@@ -5,9 +5,8 @@ require 'bundler/setup'
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'musicxml'
 
-if filepath = ARGV.shift
-  $score = MusicXML::Parser.new(filepath).parse
-end
+filepath = ARGV.shift
+$score = MusicXML::Parser.new(filepath).parse if filepath # rubocop:disable Style/GlobalVars
 
 require 'irb'
 IRB.start

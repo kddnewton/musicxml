@@ -74,8 +74,7 @@ module MusicXML
       snodes :score_instrument
     end
 
-    register :chord do
-    end
+    register :chord
 
     register :barline do
       snodes :repeat
@@ -85,8 +84,6 @@ module MusicXML
       props :direction, :times
     end
 
-    register :dot do
-    end
-
+    register :dot
   end
 end

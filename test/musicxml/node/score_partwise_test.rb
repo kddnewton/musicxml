@@ -9,12 +9,12 @@ class KeyTest < Minitest::Test
 
   private
 
-    def fake_node
-      xml = <<-XML
+  def fake_node
+    xml = <<-XML
 <score-partwise>
   <movement-title>Test Score</movement-title>
 </score-partwise>
 XML
-      Nokogiri::XML(xml)
-    end
+    Nokogiri::XML(xml)
+  end
 end

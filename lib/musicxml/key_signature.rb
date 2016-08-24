@@ -20,9 +20,9 @@ module MusicXML
 
     private
 
-      # lilypond represents flats as "es" and sharps as "is"
-      def lilypond_name
-        humanize.gsub('b', 'es').gsub('#', 'is').downcase
-      end
+    # lilypond represents flats as "es" and sharps as "is"
+    def lilypond_name
+      humanize.gsub('b', 'es').gsub('#', 'is').downcase
+    end
   end
 end
