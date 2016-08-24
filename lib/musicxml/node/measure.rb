@@ -3,7 +3,7 @@ module MusicXML
 
     register :measure do
       sattrs :sound
-      snodes :clef, :direction, :key, :time, :barline
+      snodes :clef, :direction, :key, :time, :barline, :transpose
       pnodes :note
 
       def to_lilypond
