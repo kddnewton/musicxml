@@ -69,5 +69,17 @@ module MusicXML
       sattrs :part_name
       snodes :score_instrument
     end
+
+    register :chord
+
+    register :barline do
+      snodes :repeat
+    end
+
+    register :repeat do
+      props :direction, :times
+    end
+
+    register :dot
   end
 end
