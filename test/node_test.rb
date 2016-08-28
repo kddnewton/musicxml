@@ -32,7 +32,7 @@ class NodeTest < Minitest::Test
 
   def register_test_node
     MusicXML::Node.register :test_node do
-      def self.echo(string)
+      def self.echo(string) # rubocop:disable Lint/NestedMethodDefinition
         string
       end
     end
