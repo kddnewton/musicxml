@@ -1,7 +1,7 @@
 module MusicXML
   class KeySignature
 
-    FIFTHS = %w[Gb Db Ab Eb Bb F C G D A E B F#]
+    FIFTHS = %w[Gb Db Ab Eb Bb F C G D A E B F#].freeze
 
     attr_reader :number
 
