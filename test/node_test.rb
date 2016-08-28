@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class NodeTest < Minitest::Test
-
   def test_register
     register_test_node do
       assert MusicXML::Node.const_defined?(:TestNode)

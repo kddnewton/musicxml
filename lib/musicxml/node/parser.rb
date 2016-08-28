@@ -3,13 +3,13 @@ module MusicXML
     # Parses a node to get out the child nodes and attributes
     class Parser
 
-      attr_accessor :config, :node, :parsed
+      attr_reader :config, :node, :parsed
 
       # Store the given options and build a hash of the parsed nodes
       def initialize(args = {})
-        self.config = args[:config]
-        self.node   = args[:node]
-        self.parsed = {}
+        @config = args[:config]
+        @node   = args[:node]
+        @parsed = {}
       end
 
       # Loop through each of the configured parsing options and store them

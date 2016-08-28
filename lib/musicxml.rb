@@ -8,27 +8,7 @@ require 'musicxml/node/base'
 require 'musicxml/node/parser'
 
 require 'musicxml/node'
-%w[clef key measure note part score_partwise time].each do |node|
-  require "musicxml/node/#{node}"
-end
+require 'musicxml/node/key'
 
-require 'musicxml/lilypond_version'
 require 'musicxml/key_signature'
 require 'musicxml/parser'
-
-module MusicXML
-  def self.compile_js
-    %w[sprockets uglifier pathname].each do |library|
-      require library
-    end
-
-    root = Pathname('lib/assets')
-    env = Sprockets::Environment.new(root)
-
-    env.append_path('src')
-    env.js_compressor = Uglifier.new(mangle: true)
-
-    asset = env.find_asset('main.js')
-    asset.write_to(root.join('musicxml-min.js'))
-  end
-end

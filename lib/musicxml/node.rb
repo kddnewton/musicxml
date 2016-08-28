@@ -26,8 +26,18 @@ module MusicXML
       snodes :clef, :key, :transpose
     end
 
-    register :transpose do
-      sattrs :diatonic, :chromatic, :octave
+    register :barline do
+      snodes :repeat
+    end
+
+    register :chord
+
+    register :clef do
+      sattrs :line, :sign
+    end
+
+    register :defaults do
+      sattrs :music_font, :word_font
     end
 
     register :direction do
@@ -38,9 +48,7 @@ module MusicXML
       pattrs :words, :dynamics
     end
 
-    register :defaults do
-      sattrs :music_font, :word_font
-    end
+    register :dot
 
     register :encoding do
       pattrs :supports
@@ -52,9 +60,26 @@ module MusicXML
       snodes :encoding
     end
 
+    register :measure do
+      sattrs :sound
+      snodes :clef, :direction, :key, :time, :barline, :transpose
+      pnodes :note
+    end
+
     register :notations do
       pnodes :articulations
       sattrs :arpeggiate, :slur
+    end
+
+    register :note do
+      sattrs :duration, :staff, :stem, :type, :voice, :accidental
+
+      pnodes :notations, :dot
+      snodes :pitch, :chord
+    end
+
+    register :part do
+      pnodes :measure
     end
 
     register :part_list do
@@ -63,6 +88,10 @@ module MusicXML
 
     register :pitch do
       sattrs :step, :alter, :octave
+    end
+
+    register :repeat do
+      props :direction, :times
     end
 
     register :score_instrument do
@@ -74,16 +103,19 @@ module MusicXML
       snodes :score_instrument
     end
 
-    register :chord
+    register :score_partwise do
+      sattrs :movement_title
 
-    register :barline do
-      snodes :repeat
+      pnodes :defaults, :part
+      snodes :identification, :part_list
     end
 
-    register :repeat do
-      props :direction, :times
+    register :time do
+      sattrs :beats, :beat_type
     end
 
-    register :dot
+    register :transpose do
+      sattrs :diatonic, :chromatic, :octave
+    end
   end
 end

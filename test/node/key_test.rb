@@ -7,7 +7,7 @@ class KeyTest < Minitest::Test
     mock = Minitest::Mock.new
     mock.expect(:humanize, return_value)
 
-    MusicXML::KeySignature.stub :new, mock do
+    MusicXML::KeySignature.stub(:new, mock) do
       node = MusicXML::Node::Key.new(fake_node)
       assert_equal return_value, node.humanize
     end
