@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class NodeTest < Minitest::Test
-
   def test_register
     register_test_node do
       assert MusicXML::Node.const_defined?(:TestNode)
@@ -33,7 +32,7 @@ class NodeTest < Minitest::Test
 
   def register_test_node
     MusicXML::Node.register :test_node do
-      def self.echo(string)
+      def self.echo(string) # rubocop:disable Lint/NestedMethodDefinition
         string
       end
     end

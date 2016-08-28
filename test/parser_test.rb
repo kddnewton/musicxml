@@ -1,6 +1,13 @@
 require 'test_helper'
 
 class ParserTest < Minitest::Test
+  XML = <<-XML.freeze
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 3.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="3.0">
+  <movement-title>Prelude to a Tragedy</movement-title>
+</score-partwise>
+XML
 
   def test_initialize
     filepath = 'samples/ActorPreludeSample.xml'
@@ -23,16 +30,8 @@ class ParserTest < Minitest::Test
   private
 
   def fake_file
-    fake_doc = <<-XML
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 3.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
-<score-partwise version="3.0">
-  <movement-title>Prelude to a Tragedy</movement-title>
-</score-partwise>
-XML
-
     file = Tempfile.new(['fake-', '.xml'])
-    file.write(fake_doc)
+    file.write(XML)
     file.rewind
 
     begin
