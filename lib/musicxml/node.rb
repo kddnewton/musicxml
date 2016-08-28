@@ -60,6 +60,14 @@ module MusicXML
       snodes :encoding
     end
 
+    register :key do
+      sattrs :fifths, :mode
+
+      def humanize
+        (@key_signature ||= KeySignature.new(fifths.to_i)).humanize
+      end
+    end
+
     register :measure do
       sattrs :sound
       snodes :clef, :direction, :key, :time, :barline, :transpose
