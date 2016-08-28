@@ -1,29 +1,29 @@
-$LOAD_PATH.push File.expand_path('../lib', __FILE__)
-
+# coding: utf-8
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'musicxml/version'
 
-Gem::Specification.new do |s|
-  s.name        = 'musicxml'
-  s.version     = MusicXML::VERSION
-  s.authors     = ['Kevin Deisz']
-  s.email       = ['kevin.deisz@gmail.com']
-  s.homepage    = 'https://github.com/kddeisz/musicxml'
-  s.summary     = 'Ruby bindings for musicxml'
-  s.description = 'Read and parse musicxml in ruby'
-  s.license     = 'MIT'
+Gem::Specification.new do |spec|
+  spec.name          = 'musicxml'
+  spec.version       = MusicXML::VERSION
+  spec.authors       = ['Kevin Deisz']
+  spec.email         = ['kevin.deisz@gmail.com']
 
-  s.files = Dir['lib/**/*', 'MIT-LICENSE', 'Rakefile', 'README.rdoc']
-  s.test_files = Dir['test/**/*']
-  s.executables << 'lilypond'
+  spec.summary       = 'Ruby bindings for musicxml'
+  spec.homepage      = 'https://github.com/kddeisz/musicxml'
+  spec.license       = 'MIT'
 
-  s.add_dependency 'nokogiri'
+  spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^test/}) }
+  spec.require_paths = ['lib']
 
-  s.add_development_dependency 'minitest'
-  s.add_development_dependency 'rake'
-  s.add_development_dependency 'rdoc'
-  s.add_development_dependency 'simplecov'
-  s.add_development_dependency 'sinatra'
-  s.add_development_dependency 'sprockets'
-  s.add_development_dependency 'uglifier'
-  s.add_development_dependency 'rubocop'
+  spec.add_dependency 'nokogiri', '~> 1.6'
+
+  spec.add_development_dependency 'minitest'
+  spec.add_development_dependency 'rake'
+  spec.add_development_dependency 'rdoc'
+  spec.add_development_dependency 'simplecov'
+  spec.add_development_dependency 'sinatra'
+  spec.add_development_dependency 'sprockets'
+  spec.add_development_dependency 'uglifier'
+  spec.add_development_dependency 'rubocop'
 end

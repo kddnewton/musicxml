@@ -1,7 +1,6 @@
-.bundle/
-coverage/
-rdoc/
-
-.ruby-version
-.ruby-gemset
-
+/.bundle/
+/.ruby-version
+/.ruby-gemset
+/coverage/
+/Gemfile.lock
+/pkg/
