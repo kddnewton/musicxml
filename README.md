@@ -22,7 +22,7 @@ Or install it yourself as:
 
 ## Usage
 
-```
+```ruby
 filepath = 'my-piece.xml'
 score = MusicXML::Parser.new(filepath)
 ```
